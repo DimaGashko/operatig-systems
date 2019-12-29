@@ -5,7 +5,11 @@
 int main(int argc, char **argv) {
 	int option;
 
-	while ((option = getopt(argc, argv, ":a:b::cnd")) != -1) {
+   char *op;
+   double a, b;
+   
+
+	while ((option = getopt(argc, argv, "")) != -1) {
 		switch (option) {
 			case 'a':
 			      printf("a: %s\n", optarg);
