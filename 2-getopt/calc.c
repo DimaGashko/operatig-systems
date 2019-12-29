@@ -4,29 +4,29 @@
 #include <string.h>
 
 void help() {
-   printf("*** calc v0.1 ***\n");
+   printf("\n* * * * * calc v0.1 * * * *\n");
+   printf("\n");
    printf("Usage: calc --operator add -a 5 -b 10\n");
    printf("   or: calc -o add -a 5 -b 10\n");
    printf("   or: calc -o '+' -a 5 -b 10\n");
    printf("\n");
-   printf("Available operators: add(+), sub(-), mul(*), div(/)");
+   printf("Available operators: add(+), sub(-), mul(*), div(/)\n");
 }
 
 int main(int argc, char **argv) {
    int opt = 0;
    int optIndex = 0;
 
-   int opUsedFlag;
-   char *op;
-   float a;
-   float b;
+   char *op = "";
+   float a = 0;
+   float b = 0;
    
    struct option options[] = {
-      { "help", no_argument, &opUsedFlag, 'h' },
+      { "help", no_argument, 0, 'h' },
       { "operator", required_argument, 0, 'o' },
    };
 
-   while ((opt = getopt_long(argc, argv, "o:a:b:", options, &optIndex)) != -1) {
+   while ((opt = getopt_long(argc, argv, "o:a:b:h", options, &optIndex)) != -1) {
 		switch (opt) {
 			case 0:
             if (options[optIndex].name == "help") {
@@ -54,9 +54,9 @@ int main(int argc, char **argv) {
 		} 
 	}
 
-   // if (!opUsedFlag) {
-   //    return 0;
-   // }
+   if (op == "") {
+      return 0;
+   }
 
    if (strcmp(op, "add") == 0 || strcmp(op, "+") == 0) {
       printf("%.2f + %.2f = %.2f\n", a, b, a + b);
@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
          printf("%.2f / %.2f = %.2f\n", a, b, a / b);
       }
    } else {
-      printf("Unknown operator %s\n", op);
+      printf("Unknown operator '%s'\n", op);
    }
 
    return 0;
