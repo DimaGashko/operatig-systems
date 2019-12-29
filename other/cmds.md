@@ -19,3 +19,10 @@ gcc -o area area.c -lm
 - LD_LIBRARY_PATH=$(pwd)/bin/shared bin/use-shared-library or
 - sudo mv lib.so /usr/lib
   sudo chmod 755 /usr/lib/lib.so
+
+## What's inside
+
+- ar -tv libarea.a
+- ar -t libarea.a
+- nm libarea.a
+- nm main
