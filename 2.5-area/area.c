@@ -1,14 +1,15 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
+#include <math.h>
 
 void run();
 void help();
 
-void square();
-void rectangle();
-void triangle();
-void circle();
+double square(double a);
+double rectangle(double a, double b);
+double triangle(double a, double b, double c);
+double circle(double r);
 
 void runSquare();
 void runRectangle();
@@ -28,16 +29,16 @@ void run() {
       printf("> ");
       scanf("%s", cmd);
 
-      if (strcasecmp(cmd, "square") == 0) {
+      if (strcasecmp(cmd, "square") == 0 || strcasecmp(cmd, "s") == 0) {
          runSquare();
       }
-      else if (strcasecmp(cmd, "rectangle") == 0) {
+      else if (strcasecmp(cmd, "rectangle") == 0 || strcasecmp(cmd, "r") == 0) {
          runRectangle();
       }
-      else if (strcasecmp(cmd, "triangle") == 0) {
+      else if (strcasecmp(cmd, "triangle") == 0 || strcasecmp(cmd, "t") == 0) {
          runTriangle();
       }
-      else if (strcasecmp(cmd, "circle") == 0) {
+      else if (strcasecmp(cmd, "circle") == 0 || strcasecmp(cmd, "c") == 0) {
          runCircle();
       }
       else if (strcasecmp(cmd, "help") == 0) {
@@ -55,50 +56,101 @@ void run() {
 }
 
 void runSquare() {
+   float a;
+
    printf("Enter variables: a\n");
-   printf("a = \n");
+   printf("a = ");
+   scanf("%f", &a);
+
+   if (a < 0) {
+      printf("Invalid data\n");
+      return;
+   }
+
+   printf("S = %.2f\n", (float)square(a));
 }
 
 void runRectangle() {
+   float a, b;
+
    printf("Enter variables: a, b\n");
-   printf("a = \n");
-   printf("b = \n");
+
+   printf("a = ");
+   scanf("%f", &a);
+
+   printf("b = ");
+   scanf("%f", &b);
+
+   if (a < 0 || b < 0) {
+      printf("Invalid data\n");
+      return;
+   }
+
+   printf("S = %.2f\n", (float)rectangle(a, b));
 }
 
 void runTriangle() {
+   float a, b, c;
+   
    printf("Enter variables: a, b, c\n");
-   printf("a = \n");
-   printf("b = \n");
-   printf("c = \n");
+   
+   printf("a = ");
+   scanf("%f", &a);
+   
+   printf("b = ");
+   scanf("%f", &b);
+
+   printf("c = ");
+   scanf("%f", &c);
+
+   if (a < 0 || b < 0 || c < 0) {
+      printf("Invalid data\n");
+      return;
+   }
+
+   printf("S = %.2f\n", (float)triangle(a, b, c));
 }
 
 void runCircle() {
+   float r;
+
    printf("Enter variables: r\n");
-   printf("r = \n");
+
+   printf("r = ");
+   scanf("%f", &r);
+
+   if (r < 0) {
+      printf("Invalid data\n");
+      return;
+   }
+
+   printf("S = %.2f\n", (float)circle(r));
 }
 
-void square() {
-
+double square(double a) {
+   return a * a;
 }
 
-void rectangle() {
-   
+double rectangle(double a, double b) {
+   return a * b;
 }
 
-void triangle() {
-   
+double triangle(double a, double b, double c) {
+   const double p = (a + b + c) / 2;
+   return sqrt(p * (p - a) * (p - b) * (p - c));
 }
 
-void circle() {
-   
+double circle(double r) {
+   const double PI = 3.14159265;
+   return PI * r * r;
 }
 
 void help() {
    printf("Find the area of some figures \n");
-   printf("> square\n");
-   printf("> rectangle\n");
-   printf("> triangle\n");
-   printf("> circle\n");
+   printf("> square (s)\n");
+   printf("> rectangle (r)\n");
+   printf("> triangle (t)\n");
+   printf("> circle (c)\n");
    printf("\n");
    printf("> help \n");
    printf("> exit \n");
