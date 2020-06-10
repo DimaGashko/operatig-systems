@@ -11,7 +11,7 @@ int count = 0;
 const char *pipePath = "/tmp/epic-pipe-3";
 
 void signalsHandler() {
-   printf("SIGINTreceived %d times\n", ++count);
+   printf("SIGINT received %d times\n", ++count);
 
    char msg[80];
    sprintf(msg, "SIGINT id recied %d times", count);
