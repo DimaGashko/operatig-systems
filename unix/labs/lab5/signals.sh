@@ -6,7 +6,7 @@ count=0
 
 sigint() {
    count=$((count+1))
-   echo "SIGINT is received $count times"
+   echo "SIGINTreceived $count times"
 }
 
 trap 'sigint' sigint

@@ -5,7 +5,7 @@
 int count = 0;
 
 void signalsHandler() {
-   printf("SIGINT is received %d times\n", ++count);
+   printf("SIGINTreceived %d times\n", ++count);
 }
 
 int main() {
