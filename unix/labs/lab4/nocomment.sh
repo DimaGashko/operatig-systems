@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# removes comments from stdin for $1 and print results to stdout or $2
+# removes comments from stdin or $1 and print results to stdout or $2
 
 # usage: ./nocomment input.txt output.txt
 # or: cat input.txt | ./nocomment.sh > output.txt
